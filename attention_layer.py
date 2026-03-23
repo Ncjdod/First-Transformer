@@ -4,7 +4,7 @@ import jax.random
 
 
 def softmax(x):
-    return (jnp.exp(x))/(jnp.sum(jnp.exp(x)))
+    return (jnp.exp(x))/(jnp.sum(jnp.exp(x), axis=-1, keepdims=True))
 
 
 def attention_layer(X, W_q, W_k, W_v):
@@ -44,4 +44,4 @@ W_k = jax.random.normal(key3, shape=(8, 8))
 W_v = jax.random.normal(key4, shape=(8, 8))
 
 O, A = attention_layer(X, W_q, W_k, W_v)
-print(O)
+print(A)
